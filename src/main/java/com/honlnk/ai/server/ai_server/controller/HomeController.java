@@ -8,7 +8,7 @@ public class HomeController {
 
 	@GetMapping("/")
 	public String home() {
-		return "Welcome to AI Server - ai-server.honlnk.top";
+		return "Welcome to AI Server - ai-server.honlnk.top. Use /v1/ai/chat for AI services.";
 	}
 	
 	@GetMapping("/health")
