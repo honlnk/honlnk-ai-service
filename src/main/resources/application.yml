@@ -1,0 +1,38 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: honlnk-ai-service
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+  ai:
+    # Exclude auto configuration to enable dynamic model configuration
+    # This allows us to manage AI models through database instead of config files
+    autoconfigure:
+      exclude:
+        - org.springframework.ai.autoconfigure.openai.OpenAiAutoConfiguration
+        - org.springframework.ai.model.chat.client.autoconfigure.ChatClientAutoConfiguration
+    # DashScope configuration (optional, for traditional usage if needed)
+    # This is not used by our dynamic model system, but kept for compatibility
+    dashscope:
+      api-key: ${ALI_BAILIAN_TEST:your-api-key-here}
+      chat:
+        options:
+          model: qwen-max
+
+logging:
+  level:
+    com.honlnk.ai.server.ai_server: DEBUG
+    org.springframework.ai: DEBUG
